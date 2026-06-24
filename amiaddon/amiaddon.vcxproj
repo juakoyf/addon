@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Developer|Win32">
+      <Configuration>Developer</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Stable|Win32">
+      <Configuration>Stable</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{af895f32-9ad9-4aaf-82bd-09ee112a0108}</ProjectGuid>
+    <RootNamespace>amiaddon</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Developer|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stable|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Developer|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Stable|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Developer|Win32'">
+    <IntDir>$(SolutionDir)$(Configuration)\Intermediate\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Stable|Win32'">
+    <IntDir>$(SolutionDir)$(Configuration)\Intermediate\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Developer|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>DEV</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Stable|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdclatest</LanguageStandard_C>
+      <AdditionalIncludeDirectories>$(ProjectDir)\Libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DllMain.cpp" />
+    <ClCompile Include="Family\Family.cpp" />
+    <ClCompile Include="Libraries\Safetyhook\SafetyHook.cpp" />
+    <ClCompile Include="Libraries\Safetyhook\Zydis.c" />
+    <ClCompile Include="Renderer\Render.cpp" />
+    <ClCompile Include="SDK\Classes\CCSGameRules.cpp" />
+    <ClCompile Include="SDK\Classes\IBaseClientDll.cpp" />
+    <ClCompile Include="SDK\Classes\IClientEntityList.cpp" />
+    <ClCompile Include="SDK\Classes\IVEngineClient.hpp" />
+    <ClCompile Include="SDK\Classes\Player.cpp" />
+    <ClCompile Include="SDK\Displacement\Displacement.cpp" />
+    <ClCompile Include="SDK\Displacement\PropManager.cpp" />
+    <ClCompile Include="SDK\Hooking\Hooks.cpp" />
+    <ClCompile Include="SDK\Hooking\Hooks\AntiAim.cpp" />
+    <ClCompile Include="SDK\Hooking\Hooks\FrameStageNotify.cpp" />
+    <ClCompile Include="SDK\Hooking\Hooks\Paint.cpp" />
+    <ClCompile Include="SDK\Hooking\Hooks\Reset.cpp" />
+    <ClCompile Include="SDK\Hooking\Hooks\StartMove.cpp" />
+    <ClCompile Include="SDK\Interfaces\Interfaces.cpp" />
+    <ClCompile Include="Utils\GameEvent.cpp" />
+    <ClCompile Include="Utils\PatternScan.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Family\Family.h" />
+    <ClInclude Include="Family\Family.hpp" />
+    <ClInclude Include="Libraries\Safetyhook\SafetyHook.hpp" />
+    <ClInclude Include="Libraries\Safetyhook\Zydis.h" />
+    <ClInclude Include="Renderer\Render.hpp" />
+    <ClInclude Include="Renderer\Textures\Textures.h" />
+    <ClInclude Include="SDK\Classes\CBaseHandle.hpp" />
+    <ClInclude Include="SDK\Classes\CClientState.hpp" />
+    <ClInclude Include="SDK\Classes\CCSGameRules.hpp" />
+    <ClInclude Include="SDK\Classes\CCSGOPlayerAnimState.hpp" />
+    <ClInclude Include="SDK\Classes\CFontManager.hpp" />
+    <ClInclude Include="SDK\Classes\CGlobalVars.hpp" />
+    <ClInclude Include="SDK\Classes\CHudChat.hpp" />
+    <ClInclude Include="SDK\Classes\Color.hpp" />
+    <ClInclude Include="SDK\Classes\CUserCmd.hpp" />
+    <ClInclude Include="SDK\Classes\IBaseClientDll.hpp" />
+    <ClInclude Include="SDK\Classes\IClientEntityList.hpp" />
+    <ClInclude Include="SDK\Classes\IClientMode.hpp" />
+    <ClInclude Include="SDK\Classes\IEngineVGui.hpp" />
+    <ClInclude Include="SDK\Classes\IGameEventManager.hpp" />
+    <ClInclude Include="SDK\Classes\ISurface.hpp" />
+    <ClInclude Include="SDK\Classes\Player.hpp" />
+    <ClInclude Include="SDK\Classes\PlayerAnimState.hpp" />
+    <ClInclude Include="SDK\Classes\QAngle.hpp" />
+    <ClInclude Include="SDK\Classes\Recv.hpp" />
+    <ClInclude Include="SDK\Classes\SDK.hpp" />
+    <ClInclude Include="SDK\Classes\Vector.hpp" />
+    <ClInclude Include="SDK\Classes\Vector2D.hpp" />
+    <ClInclude Include="SDK\Displacement\Displacement.hpp" />
+    <ClInclude Include="SDK\Displacement\PropManager.hpp" />
+    <ClInclude Include="SDK\Hooking\Hooks.hpp" />
+    <ClInclude Include="SDK\Interfaces\Interfaces.hpp" />
+    <ClInclude Include="Utils\ConsoleLog.hpp" />
+    <ClInclude Include="Utils\FnvHash.hpp" />
+    <ClInclude Include="Utils\GameEvent.hpp" />
+    <ClInclude Include="Utils\PatternScan.hpp" />
+    <ClInclude Include="Utils\VCall.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
